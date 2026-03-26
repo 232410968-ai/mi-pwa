@@ -1,61 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Mi PWA</title>
-
-  <!-- PWA -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 
 <body>
-  <h2>Mi App PWA</h2>
-
-  <input type="text" id="texto" placeholder="Escribe algo">
-  <button onclick="guardar()">Guardar</button>
-
-  <ul id="lista"></ul>
+  <h1>🚀 Mi PWA funciona</h1>
+  <p>Ya puedo instalar esta app</p>
 
   <script>
-    // 🔥 CONFIGURACIÓN FIREBASE (PEGA LA TUYA)
-    const firebaseConfig = {
-  apiKey: "AIzaSy...",
-  authDomain: "apppwa-c083e.firebaseapp.com",
-  databaseURL: "https://apppwa-c083e-default-rtdb.firebaseio.com",
-  projectId: "apppwa-c083e"
-};
-
-    firebase.initializeApp(firebaseConfig);
-    var db = firebase.database();
-
-    // GUARDAR
-    function guardar() {
-      var texto = document.getElementById("texto").value;
-
-      db.ref("datos").push({
-        mensaje: texto
-      });
-    }
-
-    // LEER EN TIEMPO REAL
-    db.ref("datos").on("value", function(snapshot) {
-      var lista = document.getElementById("lista");
-      lista.innerHTML = "";
-
-      snapshot.forEach(function(child) {
-        var li = document.createElement("li");
-        li.textContent = child.val().mensaje;
-        lista.appendChild(li);
-      });
-    });
-
-    // SERVICE WORKER
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js");
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registrado'));
     }
   </script>
 </body>
